@@ -17,7 +17,7 @@ const userSchema = new mongoose.Schema(
 
     password: {
       type: String,
-      default: "", // ❗ required hata diya (important for Google login)
+      default: "", // for Google login
     },
 
     role: {
@@ -27,6 +27,17 @@ const userSchema = new mongoose.Schema(
     },
 
     profilePic: {
+      type: String,
+      default: "",
+    },
+
+    // NEW FIELDS
+    phone: {
+      type: String,
+      default: "",
+    },
+
+    bio: {
       type: String,
       default: "",
     },
