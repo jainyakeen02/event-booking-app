@@ -6,6 +6,7 @@ function Login() {
 
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
+  const [googleLoading, setGoogleLoading] = useState(false);
 
   const handleLogin = async () => {
     try {
@@ -33,21 +34,25 @@ function Login() {
   };
 
   const handleFakeGoogleLogin = () => {
-    const fakeUser = {
-      _id: "google123",
-      name: "Google User",
-      email: "googleuser@gmail.com",
-      profilePic: "https://via.placeholder.com/150",
-    };
+    setGoogleLoading(true);
 
-    const fakeToken = "fake_google_token_123";
+    setTimeout(() => {
+      const fakeUser = {
+        _id: "google123",
+        name: "Google User",
+        email: "googleuser@gmail.com",
+        profilePic: "https://via.placeholder.com/150",
+      };
 
-    localStorage.setItem("token", fakeToken);
-    localStorage.setItem("userId", fakeUser._id);
-    localStorage.setItem("user", JSON.stringify(fakeUser));
+      const fakeToken = "fake_google_token_123";
 
-    alert("Google Login Success");
-    navigate("/");
+      localStorage.setItem("token", fakeToken);
+      localStorage.setItem("userId", fakeUser._id);
+      localStorage.setItem("user", JSON.stringify(fakeUser));
+
+      alert("Google Login Success");
+      navigate("/");
+    }, 1500);
   };
 
   const token = localStorage.getItem("token");
@@ -163,14 +168,21 @@ function Login() {
 
                 <button
                   onClick={handleFakeGoogleLogin}
-                  className="flex w-full items-center justify-center gap-3 rounded-2xl border border-gray-200 bg-white py-3.5 text-sm font-semibold text-gray-700 transition hover:bg-gray-50 hover:shadow-md"
+                  disabled={googleLoading}
+                  className={`flex w-full items-center justify-center gap-3 rounded-2xl border border-gray-200 py-3.5 text-sm font-semibold transition ${
+                    googleLoading
+                      ? "cursor-not-allowed bg-gray-100 text-gray-500"
+                      : "bg-white text-gray-700 hover:bg-gray-50 hover:shadow-md"
+                  }`}
                 >
                   <img
                     src="https://cdn-icons-png.flaticon.com/512/281/281764.png"
                     alt="Google"
                     className="h-5 w-5"
                   />
-                  Continue with Google
+                  {googleLoading
+                    ? "Signing in with Google..."
+                    : "Continue with Google"}
                 </button>
               </div>
 
