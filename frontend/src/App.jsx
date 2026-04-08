@@ -7,6 +7,7 @@ import Register from "./pages/Register";
 import MyBookings from "./pages/MyBookings";
 import AddEvent from "./pages/AddEvent";
 import Payment from "./pages/Payment";
+import MyAccount from "./pages/MyAccount";
 
 function NotFound() {
   return (
@@ -71,6 +72,14 @@ function AppLayout() {
               <Payment />
             </ProtectedRoute>
           }
+        />
+        <Route
+            path="/my-account"
+            element={
+            <ProtectedRoute>
+            <MyAccount />
+            </ProtectedRoute>
+            }
         />
 
         <Route path="*" element={<NotFound />} />
