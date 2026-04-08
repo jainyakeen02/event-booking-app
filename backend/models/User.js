@@ -17,13 +17,18 @@ const userSchema = new mongoose.Schema(
 
     password: {
       type: String,
-      required: true,
+      default: "", // ❗ required hata diya (important for Google login)
     },
 
     role: {
       type: String,
       enum: ["user", "admin"],
       default: "user",
+    },
+
+    profilePic: {
+      type: String,
+      default: "",
     },
   },
   { timestamps: true }
