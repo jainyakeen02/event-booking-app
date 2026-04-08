@@ -32,6 +32,24 @@ function Login() {
     }
   };
 
+  const handleFakeGoogleLogin = () => {
+    const fakeUser = {
+      _id: "google123",
+      name: "Google User",
+      email: "googleuser@gmail.com",
+      profilePic: "https://via.placeholder.com/150",
+    };
+
+    const fakeToken = "fake_google_token_123";
+
+    localStorage.setItem("token", fakeToken);
+    localStorage.setItem("userId", fakeUser._id);
+    localStorage.setItem("user", JSON.stringify(fakeUser));
+
+    alert("Google Login Success");
+    navigate("/");
+  };
+
   const token = localStorage.getItem("token");
 
   if (token) {
@@ -89,7 +107,7 @@ function Login() {
           <div className="w-full max-w-md">
             <div className="rounded-[30px] border border-white/60 bg-white/85 p-8 shadow-[0_20px_60px_rgba(15,23,42,0.10)] backdrop-blur-xl sm:p-10">
               <div className="mb-8 text-center">
-                <div className="mx-auto flex h-14 w-14 items-center justify-center rounded-2xl bg-gradient-to-br from-red-600 to-pink-600 text-white text-xl font-extrabold shadow-lg shadow-red-200">
+                <div className="mx-auto flex h-14 w-14 items-center justify-center rounded-2xl bg-gradient-to-br from-red-600 to-pink-600 text-xl font-extrabold text-white shadow-lg shadow-red-200">
                   E
                 </div>
 
@@ -130,9 +148,29 @@ function Login() {
 
                 <button
                   onClick={handleLogin}
-                  className="w-full rounded-2xl bg-gradient-to-r from-red-600 to-pink-600 py-3.5 text-sm font-bold tracking-wide text-white transition hover:from-red-700 hover:to-pink-700 shadow-lg shadow-red-200"
+                  className="w-full rounded-2xl bg-gradient-to-r from-red-600 to-pink-600 py-3.5 text-sm font-bold tracking-wide text-white shadow-lg shadow-red-200 transition hover:from-red-700 hover:to-pink-700"
                 >
                   Login
+                </button>
+
+                <div className="flex items-center gap-3 py-1">
+                  <div className="h-px flex-1 bg-gray-200"></div>
+                  <span className="text-xs font-medium uppercase tracking-wider text-gray-400">
+                    or
+                  </span>
+                  <div className="h-px flex-1 bg-gray-200"></div>
+                </div>
+
+                <button
+                  onClick={handleFakeGoogleLogin}
+                  className="flex w-full items-center justify-center gap-3 rounded-2xl border border-gray-200 bg-white py-3.5 text-sm font-semibold text-gray-700 transition hover:bg-gray-50 hover:shadow-md"
+                >
+                  <img
+                    src="https://cdn-icons-png.flaticon.com/512/281/281764.png"
+                    alt="Google"
+                    className="h-5 w-5"
+                  />
+                  Continue with Google
                 </button>
               </div>
 
