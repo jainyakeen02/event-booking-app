@@ -21,6 +21,8 @@ function Navbar() {
   return (
     <nav className="sticky top-0 z-50 border-b border-gray-200/70 bg-white/80 backdrop-blur-xl shadow-sm">
       <div className="max-w-7xl mx-auto px-6 py-4 flex items-center justify-between gap-4">
+        
+        {/* LOGO */}
         <div
           onClick={() => navigate("/")}
           className="flex items-center gap-3 cursor-pointer select-none"
@@ -39,7 +41,9 @@ function Navbar() {
           </div>
         </div>
 
+        {/* NAV LINKS */}
         <div className="flex items-center gap-2 md:gap-3 flex-wrap justify-end">
+          
           <Link to="/" className={navLinkClass("/")}>
             Home
           </Link>
@@ -65,6 +69,11 @@ function Navbar() {
 
               <Link to="/my-bookings" className={navLinkClass("/my-bookings")}>
                 My Bookings
+              </Link>
+
+              {/*FIXED My Account */}
+              <Link to="/my-account" className={navLinkClass("/my-account")}>
+                My Account
               </Link>
 
               <button
