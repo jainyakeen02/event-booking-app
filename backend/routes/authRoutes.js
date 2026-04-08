@@ -7,7 +7,6 @@ const router = express.Router();
 router.post("/register", registerUser);
 router.post("/login", loginUser);
 
-//  New Fake Google Route
 router.post("/fake-google", fakeGoogleLogin);
 
 export default router;
